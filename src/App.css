@@ -1,38 +1,361 @@
-.App {
-  text-align: center;
-}
+/* ── Reset y base ─────────────────────────────── */
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+body {
+  background: #f0f2f5;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ── Shell — centra el teléfono en pantalla ───── */
+.app-shell {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 16px;
+  min-height: 100vh;
+}
+
+/* ── Marco del teléfono ───────────────────────── */
+.phone-frame {
+  width: 375px;
+  min-height: 780px;
+  background: #ffffff;
+  border-radius: 44px;
+  border: 6px solid #1a1a2e;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.18);
+  position: relative;
+}
+
+.phone-notch {
+  width: 120px;
+  height: 28px;
+  background: #1a1a2e;
+  border-radius: 0 0 18px 18px;
+  margin: 0 auto;
+  flex-shrink: 0;
+}
+
+/* ── Pantalla (área de scroll) ────────────────── */
+.screen {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 0 80px;
+  background: #f8f9fb;
+}
+
+.screen::-webkit-scrollbar { display: none; }
+
+/* ── Header superior ──────────────────────────── */
+.screen-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px 12px;
+  background: #ffffff;
+}
+
+.header-saludo {
+  font-size: 12px;
+  color: #888;
+}
+
+.header-nombre {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a2e;
+}
+
+/* ── Avatar ───────────────────────────────────── */
+.avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #1D9E75;
+  color: #E1F5EE;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.avatar.large {
+  width: 72px;
+  height: 72px;
+  font-size: 24px;
+  margin: 0 auto 10px;
+}
+
+/* ── Tarjeta de saldo ─────────────────────────── */
+.saldo-card {
+  margin: 16px;
+  background: #085041;
+  border-radius: 20px;
+  padding: 22px 20px;
+}
+
+.saldo-label {
+  font-size: 12px;
+  color: #5DCAA5;
+  margin-bottom: 4px;
+}
+
+.saldo-monto {
+  font-size: 36px;
+  font-weight: 700;
+  color: #E1F5EE;
+  letter-spacing: -1px;
+}
+
+.saldo-carnet {
+  font-size: 11px;
+  color: #9FE1CB;
+  margin-top: 6px;
+  opacity: 0.85;
+}
+
+.saldo-pill {
+  display: inline-block;
+  margin-top: 10px;
+  background: #0F6E56;
+  color: #9FE1CB;
+  font-size: 11px;
+  padding: 3px 12px;
+  border-radius: 20px;
+}
+
+/* ── Acciones rápidas ─────────────────────────── */
+.acciones {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 0 16px 16px;
+}
+
+.accion-btn {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  border: 1px solid #e8eaed;
+  border-radius: 14px;
+  padding: 14px 8px;
+  cursor: pointer;
+  font-size: 11px;
+  color: #444;
+  font-weight: 500;
+  transition: background 0.15s;
+}
+
+.accion-btn:hover { background: #f0faf6; }
+.accion-btn svg { color: #085041; }
+
+/* ── Sección de movimientos ───────────────────── */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 20px 10px;
+}
+
+.section-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1a2e;
+}
+
+.ver-todo {
+  font-size: 12px;
+  color: #1D9E75;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.movimientos-lista {
+  background: #ffffff;
+  border-radius: 16px;
+  margin: 0 16px;
+  overflow: hidden;
+  border: 1px solid #e8eaed;
+}
+
+.movimiento-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid #f0f2f5;
+}
+
+.movimiento-row:last-child { border-bottom: none; }
+
+.mov-icono {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  flex-shrink: 0;
+}
+
+.mov-icono.ingreso { background: #EAF3DE; color: #3B6D11; }
+.mov-icono.gasto   { background: #FCEBEB; color: #A32D2D; }
+
+.mov-info { flex: 1; }
+.mov-lugar { font-size: 13px; color: #1a1a2e; font-weight: 500; }
+.mov-hora  { font-size: 11px; color: #888; margin-top: 1px; }
+
+.mov-monto { font-size: 13px; font-weight: 600; }
+.mov-monto.pos { color: #3B6D11; }
+.mov-monto.neg { color: #A32D2D; }
+
+/* ── Barra de navegación inferior ────────────── */
+.bottom-nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border-top: 1px solid #e8eaed;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 8px 0 16px;
+  border-radius: 0 0 38px 38px;
+}
+
+.nav-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #aaa;
+  font-size: 10px;
+  font-weight: 500;
+  transition: color 0.15s;
+}
+
+.nav-btn.active { color: #085041; }
+.nav-btn:hover  { color: #1D9E75; }
+
+/* ── Pantalla Carnet ──────────────────────────── */
+.carnet-card {
+  background: linear-gradient(135deg, #085041 0%, #1D9E75 100%);
+  margin: 16px;
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.carnet-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.sena-logo {
+  font-size: 18px;
+  font-weight: 800;
+  color: #E1F5EE;
+  letter-spacing: 2px;
 }
+
+.carnet-tipo {
+  font-size: 11px;
+  background: rgba(255,255,255,0.2);
+  padding: 3px 10px;
+  border-radius: 20px;
+  color: #E1F5EE;
+}
+
+.carnet-nombre   { font-size: 16px; font-weight: 700; color: #E1F5EE; margin-bottom: 4px; }
+.carnet-programa { font-size: 12px; color: #9FE1CB; margin-bottom: 4px; }
+.carnet-ficha    { font-size: 11px; color: #5DCAA5; }
+
+/* ── QR ───────────────────────────────────────── */
+.qr-zona {
+  background: #ffffff;
+  margin: 0 16px 16px;
+  border-radius: 16px;
+  border: 1px solid #e8eaed;
+  padding: 20px;
+  text-align: center;
+}
+
+.qr-label {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 12px;
+}
+
+.qr-box {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.qr-grid {
+  display: grid;
+  grid-template-columns: repeat(19, 10px);
+  grid-template-rows: repeat(19, 10px);
+  gap: 1px;
+}
+
+.qr-cel { border-radius: 1px; }
+.qr-cel.on  { background: #1a1a2e; }
+.qr-cel.off { background: transparent; }
+
+.qr-id    { font-size: 13px; font-weight: 600; color: #1a1a2e; margin-bottom: 4px; }
+.qr-timer { font-size: 10px; color: #aaa; }
+
+/* ── Saldo mini ───────────────────────────────── */
+.saldo-mini {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f0faf6;
+  margin: 0 16px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid #9FE1CB;
+}
+
+.saldo-mini-label { font-size: 12px; color: #085041; }
+.saldo-mini-valor { font-size: 16px; font-weight: 700; color: #085041; }
+
+/* ── Pantalla Historial ───────────────────────── */
+.resumen-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 16px 16px 12px;
+}
+
+.resumen-card {
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.resumen-card.ingreso { background: #EAF3DE; }
+.resumen-card.gasto   { background: #FCEBEB; }
+
+.res-label { font-size: 11px; color: #888; margin-bottom: 4px; }
+
+.resumen-card.ingreso .res-valor { font-size: 18px; font-weight: 700; color: #3B6D11; }
+.resumen-card.gasto   .res-valor { font-size: 18px; font-weight: 700; color: #A32D2D; }
