@@ -3,12 +3,12 @@ import './App.css';
 
 // --- DATOS DE PRUEBA ---
 const aprendiz = {
-  nombre: 'Juan Suárez',
-  programa: 'Técnico en Metalmecánica',
-  centro: 'Centro Metalmecánico · Bogotá',
-  carnet: '2024-CM-0419',
-  ficha: '2872451',
-  saldo: 47500,
+  nombre: 'Santiago Castillo',
+  programa: 'Analisis y Desarrollo software',
+  centro: 'CIMM - Duitama',
+  carnet: '4941962',
+  ficha: '3232476',
+  saldo: 10300,
 };
 
 const movimientos = [
