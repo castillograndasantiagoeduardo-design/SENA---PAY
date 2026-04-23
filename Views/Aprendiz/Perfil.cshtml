@@ -1,0 +1,91 @@
+﻿@{
+    ViewData["Title"] = "Mi Carnet Digital";
+}
+
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card-carnet shadow-lg">
+        <div class="carnet-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <span class="text-white fw-bold">SENA-PAY</span>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Sena_Colombia_logo.svg" alt="Sena Logo" style="width: 30px; filter: brightness(0) invert(1);">
+            </div>
+        </div>
+
+        <div class="carnet-body text-center">
+            <div class="profile-pic-container mb-3">
+                <img src="https://via.placeholder.com/100" class="rounded-circle border border-3 border-success" alt="Foto Aprendiz">
+            </div>
+
+            <h4 class="fw-bold mb-0 text-uppercase">@ViewBag.Nombre</h4>
+            <p class="text-muted small">Aprendiz - Ficha @ViewBag.Ficha</p>
+
+            <div class="saldo-container my-4">
+                <p class="mb-0 text-secondary">Saldo Disponible</p>
+                <h2 class="fw-bold text-success">$@ViewBag.Saldo</h2>
+            </div>
+
+            <div class="info-footer d-flex justify-content-around border-top pt-3">
+                <div>
+                    <small class="text-muted d-block">Documento</small>
+                    <span class="fw-bold">@ViewBag.Documento</span>
+                </div>
+                <div>
+                    <small class="text-muted d-block">Estado</small>
+                    <span class="badge bg-success">Activo</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-3">
+            <a href="/Tienda" class="btn btn-success w-100 py-2 fw-bold shadow-sm">
+                Ir a Tienda Digital <i class="bi bi-cart-fill"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card-carnet {
+        width: 350px;
+        background: #fff;
+        border-radius: 20px;
+        overflow: hidden;
+        border: none;
+        transition: transform 0.3s ease;
+    }
+
+    .card-carnet:hover {
+        transform: translateY(-5px);
+    }
+
+    .carnet-header {
+        background: linear-gradient(135deg, #009955 0%, #006b3c 100%);
+        padding: 20px;
+    }
+
+    .carnet-body {
+        padding: 20px;
+    }
+
+    .profile-pic-container img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+    }
+
+    .saldo-container {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 15px;
+    }
+
+    .btn-success {
+        background-color: #009955;
+        border: none;
+        border-radius: 10px;
+    }
+
+    .btn-success:hover {
+        background-color: #007a44;
+    }
+</style>
